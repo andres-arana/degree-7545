@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Change your password</h1>
+  </div>
+
+  <%= simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :put } do |f| %>
+    <%= f.input :reset_password_token, as: :hidden %>
+    <%= f.input :password, autofocus: true %>
+    <%= f.input :password_confirmation %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+
+  <h5>También puede intentar: </h5>
+  <%= render "devise/shared/links" %>
+</div>

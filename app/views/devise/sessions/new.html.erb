@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Iniciar sesión</h1>
+  </div>
+
+  <%= simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
+    <%= f.input :email, autofocus: true %>
+    <%= f.input :password %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+  <h5>También puede intentar: </h5>
+  <%= render "devise/shared/links" %>
+</div>
