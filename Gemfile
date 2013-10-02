@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
+ruby "2.0.0"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -32,8 +32,19 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do
+  # Heroku provisioning
+  gem 'rails_12factor'
+
+  # Use heroku postgres as the database for Active Record
+  gem 'pg'
+end
+
 group :development do
   # Show emails in the browser
   gem 'letter_opener'
+
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
 end
 
