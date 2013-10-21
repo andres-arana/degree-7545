@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Dashboard</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Mis torneos
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Estado</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% current_user.tournaments.each do |tournament| %>
+            <tr>
+              <td><%= tournament.name %></td>
+              <td>Nuevo</td>
+              <td>
+                <div class="dropdown">
+                  <a class="btn btn-primary btn-xs pull-right" href="#" data-toggle="dropdown">
+                    Administrar <span class="glyphicon glyphicon-chevron-down"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                    <%= link_to "#" do %>
+                      <span class="glyphicon glyphicon-pencil"> Modificar</span>
+                  <% end %>
+                    <%= link_to "#" do %>
+                      <span class="glyphicon glyphicon-trash"> Eliminar</span>
+                  <% end %>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <div class="panel-footer">
+          <%= link_to new_tournament_path, class: "btn btn-danger btn-xs pull-right" do %>
+            <span class="glyphicon glyphicon-plus"></span> Crear nuevo
+          <% end %>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Mis notificaciones
+        </div>
+        <div class="panel-body text-center">
+          <p>
+          No tiene ninguna notificación aún.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -27,6 +27,14 @@ body {
   text-align: justify;
 }
 
+.text-right-justify {
+  text-align: right;
+}
+
+.panel-footer {
+  padding-right: 8px;
+}
+
 .jumbotron .btn {
   padding: 15px 25px;
   font-size: 24px;
