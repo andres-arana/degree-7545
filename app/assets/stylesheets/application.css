@@ -23,11 +23,7 @@ body {
   background-color: #D0D7E9;
 }
 
-.centered {
-  text-align: center;
-}
-
-.justified {
+.text-justify {
   text-align: justify;
 }
 
