@@ -8,8 +8,6 @@
     <%= f.input :password, autofocus: true %>
     <%= f.input :password_confirmation %>
     <%= f.button :submit, class: "btn btn-primary" %>
+    <%= render "devise/shared/links" %>
   <% end %>
-
-  <h5>También puede intentar: </h5>
-  <%= render "devise/shared/links" %>
 </div>

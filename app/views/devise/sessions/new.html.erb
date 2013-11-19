@@ -3,11 +3,23 @@
     <h1>Iniciar sesión</h1>
   </div>
 
-  <%= simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
-    <%= f.input :email, autofocus: true %>
-    <%= f.input :password %>
-    <%= f.button :submit, class: "btn btn-primary" %>
-  <% end %>
-  <h5>También puede intentar: </h5>
-  <%= render "devise/shared/links" %>
+  <div class="row">
+    <div class="col-md-5">
+      <%= simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
+        <%= f.input :email, autofocus: true %>
+        <%= f.input :password %>
+        <%= f.button :submit, "Iniciar sesión", class: "btn btn-primary" %>
+        <%= render "devise/shared/links" %>
+      <% end %>
+    </div>
+    <div class="col-md-7">
+      <div class="well well-lg">
+        <div class="text-center">
+          <h4>También puede iniciar sesión con:</h4>
+        </div>
+        <%= render "devise/shared/social" %>
+      </div>
+    </div>
+  </div>
+
 </div>

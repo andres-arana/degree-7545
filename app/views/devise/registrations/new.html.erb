@@ -4,28 +4,22 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5">
       <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
         <%= f.input :email, autofocus: true %>
         <%= f.input :password %>
         <%= f.input :password_confirmation %>
         <%= f.button :submit, class: "btn btn-primary" %>
+        <%= render "devise/shared/links" %>
       <% end %>
-      <h5>También puede intentar: </h5>
-      <%= render "devise/shared/links" %>
     </div>
 
-    <div class="col-md-6">
-      <div class="alert alert-info">
-        <h2>Periodo de Prueba</h2>
-        <p>
-          Puede probar Koncu gratuitamente y sin ningún tipo de compromiso por 30
-          días. Solo debe registrarse aquí para obtener su cuenta y podrá comenzar
-          a organizar su torneo inmediatamente. Terminado el periodo de prueba, nos
-          comunicaremos con usted a través del email para asesorarlo acerca de
-          nuestros planes y precios.
-        </p>
-
+    <div class="col-md-7">
+      <div class="well well-lg">
+        <div class="text-center">
+          <h4>También puede iniciar sesión directamente a través de:</h4>
+        </div>
+        <%= render "devise/shared/social" %>
       </div>
     </div>
   </div>

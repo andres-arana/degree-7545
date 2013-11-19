@@ -48,20 +48,6 @@
     </nav>
 
     <div class="content">
-      <% if flash[:alert] %>
-        <div class="container" style="padding-top: 25px;">
-          <div class="alert alert-warning">
-            <%= flash[:alert] %>
-          </div>
-        </div>
-      <% end %>
-      <% if flash[:notice] %>
-        <div class="container" style="padding-top: 25px;">
-          <div class="alert alert-success">
-            <%= flash[:notice] %>
-          </div>
-        </div>
-      <% end %>
       <%= yield %>
     </div>
 
@@ -77,5 +63,37 @@
 
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js" %>
+
+    <% if flash[:alert] %>
+      <script>
+        $(document).ready(function() {
+          $.pnotify({
+            title: "Alerta",
+            text: '<%= escape_javascript(flash[:alert]) %>',
+            type: 'error',
+            icon: 'glyphicon glyphicon-envelope',
+            width: '80%',
+            closer_hover: false
+          });
+        });
+      </script>
+    <% end %>
+
+    <% if flash[:notice] %>
+      <script>
+        $(document).ready(function() {
+          $.pnotify({
+            title: "Alerta",
+            text: '<%= escape_javascript(flash[:notice]) %>',
+            type: 'info',
+            icon: 'glyphicon glyphicon-envelope',
+            width: '80%',
+            closer_hover: false
+          });
+        });
+      </script>
+    <% end %>
+
+    <script></script>
   </body>
 </html>

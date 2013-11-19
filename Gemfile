@@ -5,7 +5,6 @@ ruby "2.0.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -24,13 +23,15 @@ gem 'high_voltage'
 # User management and authentication
 gem 'devise'
 
+# Social networks integration
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 # Form creation
 gem 'simple_form'
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
+# Lightweight bundled server
+gem 'thin'
 
 group :production do
   # Heroku provisioning
@@ -46,5 +47,8 @@ group :development do
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+
+  # Use figaro for configuration management
+  gem 'figaro'
 end
 

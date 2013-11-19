@@ -6,9 +6,7 @@
   <%= simple_form_for resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post } do |f| %>
     <%= f.input :email, autofocus: true %>
     <%= f.button :submit, class: "btn btn-primary" %>
+    <%= render "devise/shared/links" %>
   <% end %>
-
-  <h5>También puede intentar: </h5>
-  <%= render "devise/shared/links" %>
 </div>
 
