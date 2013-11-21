@@ -14,6 +14,12 @@ class TournamentsController < ApplicationController
     end
   end
 
+  def destroy
+    @tournament = current_user.tournaments.find(params[:id])
+    @tournament.destroy
+    redirect_to profile_path, alert: "El torneo ha sido eliminado"
+  end
+
   private
   def tournament_params
     params.require(:tournament).permit(:name)

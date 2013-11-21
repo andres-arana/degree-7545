@@ -31,10 +31,10 @@
                     <li>
                     <%= link_to "#" do %>
                       <span class="glyphicon glyphicon-pencil"> Modificar</span>
-                  <% end %>
-                    <%= link_to "#" do %>
+                    <% end %>
+                    <%= link_to tournament_path(tournament), method: :delete do %>
                       <span class="glyphicon glyphicon-trash"> Eliminar</span>
-                  <% end %>
+                    <% end %>
                     </li>
                   </ul>
                 </div>
