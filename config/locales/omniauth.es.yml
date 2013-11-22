@@ -1,0 +1,6 @@
+es:
+  devise:
+    omniauth:
+      user:
+        success: "Ha iniciado sesión con su cuenta de %{kind}."
+        failure: "No puede iniciar sesión con su cuenta de %{kind} debido a la siguiente razón: %{reason}."

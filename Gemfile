@@ -36,6 +36,10 @@ gem 'simple_form'
 # Lightweight bundled server
 gem 'thin'
 
+# Custom locales
+gem 'rails-i18n', '~> 4.0.0'
+gem 'devise-i18n'
+
 group :production do
   # Heroku provisioning
   gem 'rails_12factor'

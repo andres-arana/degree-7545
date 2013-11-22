@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
     :trackable, :validatable, :confirmable,
     :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :tournaments
+  has_many :tournaments, dependent: :destroy
 
   def has_tournaments?
     tournaments.exists?

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="page-header">
-    <h1>Dashboard</h1>
+    <h1>Panel de control</h1>
   </div>
 
   <div class="row">
@@ -13,7 +13,11 @@
           <% end %>
           <div class="clearfix"></div>
         </div>
-        <% if current_user.has_tournaments? %>
+        <% unless current_user.has_tournaments? %>
+          <div class="panel-body text-center">
+          <p>No está organizando ningún torneo aún.</p>
+        </div>
+        <% else %>
           <table class="table">
             <thead>
               <tr>

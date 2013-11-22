@@ -1,0 +1,15 @@
+es:
+  activerecord:
+    models:
+      tournament: Torneo
+    attributes:
+      tournament:
+        name: Nombre
+        strategy: Modalidad
+  enumerize:
+    tournament:
+      status:
+        new: Planificando
+      strategy:
+        free_for_all: Todos contra todos
+

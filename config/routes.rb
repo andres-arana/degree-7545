@@ -15,5 +15,5 @@ Koncu::Application.routes.draw do
 
   get 'profile', to: "dashboard#show"
 
-  root to: 'high_voltage/pages#show', id: 'home'
+  root to: 'home#show'
 end
