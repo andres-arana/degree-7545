@@ -23,6 +23,9 @@ gem 'high_voltage'
 # User management and authentication
 gem 'devise'
 
+# Enumerations for models
+gem 'enumerize'
+
 # Social networks integration
 gem 'omniauth'
 gem 'omniauth-facebook'
