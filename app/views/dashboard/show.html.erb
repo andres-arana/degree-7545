@@ -26,7 +26,7 @@
             <% current_user.tournaments.each do |tournament| %>
               <tr>
                 <td><%= tournament.name %></td>
-                <td><%= tournament.state_text %></td>
+                <td><%= tournament.status_text %></td>
                 <td>
                   <div class="dropdown">
                     <a class="btn btn-primary btn-xs pull-right" href="#" data-toggle="dropdown">

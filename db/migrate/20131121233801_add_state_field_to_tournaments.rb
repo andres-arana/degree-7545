@@ -1,7 +1,7 @@
 class AddStateFieldToTournaments < ActiveRecord::Migration
   def change
     change_table :tournaments do |t|
-      t.string :state
+      t.string :status
     end
   end
 end

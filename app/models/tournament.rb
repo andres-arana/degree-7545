@@ -6,15 +6,20 @@ class Tournament < ActiveRecord::Base
   validates :name, presence: true
   validates :user_id, presence: true
 
-  validates :state, presence: true
+  validates :status, presence: true
+  validates :strategy, presence: true
 
-  enumerize :state,
+  enumerize :status,
     in: [:new],
     default: :new,
     predicates: {prefix: true},
     scope: true
 
+  enumerize :strategy,
+    in: [:free_for_all],
+    default: :free_for_all
+
   def can_be_deleted?
-    self.state_new?
+    self.status_new?
   end
 end
