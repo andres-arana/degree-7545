@@ -4,7 +4,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-7">
       <%= simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
         <%= f.input :email, autofocus: true %>
         <%= f.input :password %>
@@ -12,7 +12,7 @@
         <%= render "devise/shared/links" %>
       <% end %>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-5">
       <div class="well well-lg">
         <div class="text-center">
           <h4>También puede iniciar sesión con:</h4>

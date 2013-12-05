@@ -1,20 +1,20 @@
 <div class="jumbotron">
   <div class="container">
     <div class="row">
-      <div class="col-md-7">
-        <h1 class="text-center">Administre su torneo de forma sencilla y económica</h1>
-        <p class="text-justify">
+      <div class="col-md-8">
+        <h1 class="text-center">Administre su torneo de manera sencilla</h1>
+        <p class="text-center">
           Organizar un torneo es algo difícil y costoso. Koncu es la plataforma
           de administración de torneos y competencias que estaba buscando para
           que lo difícil sea fácil, y lo costoso económico.
         </p>
         <div class="text-center">
           <%= link_to new_user_registration_path, class: "btn btn-lg btn-danger" do %>
-            Pruébelo gratuitamente
+            Pruébelo
           <% end %>
         </div>
       </div>
-      <div class="col-md-5 visible-md visible-lg">
+      <div class="col-md-4 visible-md visible-lg">
         <div style="margin-top: 35px;">
           <%= image_tag "futbol.jpg", class: "img-responsive img-rounded" %>
         </div>
@@ -28,7 +28,7 @@
 
   <div class="row">
     <div class="col-md-4">
-      <div class="alert alert-info">
+      <div class="alert alert-danger">
         <h3>
           <span class="glyphicon glyphicon-calendar"></span>
           Fixtures automáticos
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="col-md-4">
-      <div class="alert alert-success">
+      <div class="alert alert-info">
         <h3>
           <span class="glyphicon glyphicon-list-alt"></span>
           Estadísticas

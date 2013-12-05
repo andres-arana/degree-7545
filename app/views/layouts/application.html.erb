@@ -4,7 +4,7 @@
     <title>Koncu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootswatch/3.0.0/flatly/bootstrap.min.css" %>
+    <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootswatch/3.0.2/cosmo/bootstrap.min.css" %>
     <%= stylesheet_link_tag "application" %>
 
     <%= csrf_meta_tags %>
@@ -12,53 +12,32 @@
   <body>
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Navegación</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to "Koncu", root_path, class: "navbar-brand" %>
-        </div>
-
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <% if user_signed_in? %>
-            <ul class="nav navbar-nav navbar-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <%= current_user.email %> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <%= link_to destroy_user_session_path, method: :delete do %>
-                      <span class="glyphicon glyphicon-log-out"></span> Cerrar sesión
-                    <% end %>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          <% else %>
-            <%= link_to new_user_session_path, class: "btn btn-info navbar-btn pull-right" do %>
-              <span class="glyphicon glyphicon-user"></span> Iniciar sesión
-            <% end %>
+        <%= link_to "Koncu", root_path, class: "navbar-brand" %>
+        <% if user_signed_in? %>
+          <ul class="nav navbar-nav navbar-right pull-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-user"></span> <%= current_user.email %> <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                    <span class="glyphicon glyphicon-log-out"></span> Cerrar sesión
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        <% elsif controller_name != 'sessions' %>
+          <%= link_to new_user_session_path, class: "btn btn-info navbar-btn pull-right" do %>
+            <span class="glyphicon glyphicon-user"></span> Iniciar sesión
           <% end %>
-        </div>
+        <% end %>
       </div>
     </nav>
 
     <div class="content">
       <%= yield %>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <div>
-          <p class="text-muted">
-            &copy; Koncu 2013. Todos los derechos reservados.
-          </p>
-        </div>
-      </div>
     </div>
 
     <%= javascript_include_tag "application" %>
@@ -72,7 +51,7 @@
             text: '<%= escape_javascript(flash[:alert]) %>',
             type: 'error',
             icon: 'glyphicon glyphicon-envelope',
-            width: '80%',
+            width: '60%',
             closer_hover: false
           });
         });
@@ -85,15 +64,13 @@
           $.pnotify({
             title: "Alerta",
             text: '<%= escape_javascript(flash[:notice]) %>',
-            type: 'info',
+            type: 'success',
             icon: 'glyphicon glyphicon-envelope',
-            width: '80%',
+            width: '60%',
             closer_hover: false
           });
         });
       </script>
     <% end %>
-
-    <script></script>
   </body>
 </html>

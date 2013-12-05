@@ -14,20 +14,21 @@
         <div class="well">
           <div class="info">
             <h4>Todos contra todos</h4>
-            <p>Los torneos de todos contra todos se definen acumulando puntos que
-            cada equipo adquiere de acuerdo a los resultados de los partidos que
-            juegan. Cada equipo suma 3 puntos por partido ganado y 1 punto por
-            partido empatado. Se organizan suficientes partidos de manera de que
-            cada equipo gjuegue un partido contra cada uno de los equipos
-            restantes.</p>
-            <p>Una vez jugados todos los partidos, el equipo con mayor cantidad
-            de puntos es el ganador del torneo.</p>
+            <p class="text-justify">Los torneos de todos contra todos se
+              definen acumulando puntos que cada equipo adquiere de acuerdo a
+              los resultados de los partidos que juegan. Cada equipo suma 3
+              puntos por partido ganado y 1 punto por partido empatado. Se
+              organizan suficientes partidos de manera de que cada equipo
+              juegue un partido contra cada uno de los equipos restantes.</p>
+            <p class="text-justify">Una vez jugados todos los partidos, el equipo con mayor cantidad
+              de puntos es el ganador del torneo.</p>
           </div>
         </div>
       </div>
     </div>
 
     <%= f.button :submit, "Crear torneo", class: "btn btn-primary" %>
+    <%= link_to "Cancelar", root_path, class: "btn btn-default" %>
   <% end %>
 </div>
 
