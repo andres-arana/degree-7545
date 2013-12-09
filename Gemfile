@@ -22,6 +22,7 @@ gem 'high_voltage'
 
 # User management and authentication
 gem 'devise'
+gem 'devise_invitable'
 
 # Enumerations for models
 gem 'enumerize'

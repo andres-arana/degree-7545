@@ -42,7 +42,7 @@ class TeamsController < ApplicationController
 
   def check_tournament_ownership
     unless current_user.has_role? :organizer, @tournament
-      redirect_to root_path, alert: "No puede crear un equipo en un torneo que no organiza."
+      redirect_to root_path, alert: "No puede administrar equipos en un torneo que no organiza."
       false
     else
       true

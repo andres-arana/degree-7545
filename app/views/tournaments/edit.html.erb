@@ -31,31 +31,42 @@
         <div class="clearfix"></div>
       </legend>
 
-      <table class="table table-condensed table-striped">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
+      <% unless @tournament.has_teams? %>
+        <div class="well">
+          <p>No hay equipos registrados en este torneo.</p>
+        </div>
+      <% else %>
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
 
-        <% @tournament.teams.each do |team| %>
-          <tr>
-            <td><%= team.name %></td>
-            <td class="text-right">
-              <%= link_to edit_tournament_team_path(@tournament, team), class: "btn btn-default btn-sm" do %>
-                <span class="glyphicon glyphicon-pencil"></span> Editar
-              <% end %>
-              <%= link_to tournament_team_path(@tournament, team), method: :delete, class: "btn btn-default btn-sm" do %>
-                <span class="glyphicon glyphicon-trash"></span> Eliminar
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
+          <% @tournament.teams.each do |team| %>
+            <tr>
+              <td><%= team.name %></td>
+              <td class="text-right">
+                <%= link_to edit_tournament_team_path(@tournament, team), class: "btn btn-default btn-sm" do %>
+                  <span class="glyphicon glyphicon-pencil"></span> Editar
+                <% end %>
+                <%= link_to tournament_team_path(@tournament, team), method: :delete, class: "btn btn-default btn-sm" do %>
+                  <span class="glyphicon glyphicon-trash"></span> Eliminar
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </fieldset>
+
+    <div class="pull-right">
+      <%= link_to "Volver al panel de control", root_path, class: "btn btn-default" %>
+    </div>
+    <div class="clearfix"></div>
   <% end %>
 </div>
 

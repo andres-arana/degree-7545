@@ -22,4 +22,8 @@ class Tournament < ActiveRecord::Base
   def can_be_deleted?
     self.status_new?
   end
+
+  def has_teams?
+    self.teams.any?
+  end
 end

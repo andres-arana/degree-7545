@@ -7,14 +7,57 @@
   </div>
 
   <%= simple_form_for [@tournament, @team] do |f| %>
-    <fieldset>
+    <fieldset style="margin-bottom: 1.5em;">
       <legend>Datos generales</legend>
       <%= f.input :name %>
+
+      <div class="pull-right">
+        <%= f.button :submit, "Actualizar equipo", class: "btn btn-primary" %>
+        <%= link_to "Cancelar", edit_tournament_path(@tournament), class: "btn btn-default" %>
+      </div>
+      <div class="clearfix"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>
+        Miembros
+        <%= link_to new_tournament_team_member_path(@tournament, @team), class: "btn btn-danger btn-sm pull-right" do %>
+          <span class="glyphicon glyphicon-plus"></span> Registrar miembro
+        <% end %>
+        <div class="clearfix"></div>
+      </legend>
+
+      <% unless @team.has_members? %>
+        <div class="well">
+          <p>No hay miembros registrados en este equipo.</p>
+        </div>
+      <% else %>
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+          <% @team.find_members.each do |member| %>
+            <tr>
+              <td><%= member.email %></td>
+              <td class="text-right">
+                <%= link_to tournament_team_member_path(@tournament, @team, member), method: :delete, class: "btn btn-default btn-sm" do %>
+                  <span class="glyphicon glyphicon-trash"></span> Quitar
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </fieldset>
 
     <div class="pull-right">
-      <%= f.button :submit, "Actualizar equipo", class: "btn btn-primary" %>
-      <%= link_to "Cancelar", edit_tournament_path(@tournament), class: "btn btn-default" %>
+      <%= link_to "Volver al torneo", edit_tournament_path(@tournament), class: "btn btn-default" %>
     </div>
     <div class="clearfix"></div>
   <% end %>

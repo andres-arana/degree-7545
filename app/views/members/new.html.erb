@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="page-header">
+    <h1>
+      Nuevo miembro
+      <small>en el equipo <%= @team.name %> del torneo <%= @tournament.name %></small>
+    </h1>
+  </div>
+
+  <%= simple_form_for [@tournament, @team, @member], url: tournament_team_members_path(@tournament, @team) do |f| %>
+    <fieldset>
+      <legend>Datos generales</legend>
+      <%= f.input :email %>
+    </fieldset>
+
+    <div class="pull-right">
+      <%= f.button :submit, "Registrar miembro", class: "btn btn-primary" %>
+      <%= link_to "Cancelar", edit_tournament_team_path(@tournament, @team), class: "btn btn-default" %>
+    </div>
+    <div class="clearfix"></div>
+  <% end %>
+</div>
+
+
