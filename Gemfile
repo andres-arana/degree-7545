@@ -26,6 +26,9 @@ gem 'devise'
 # Enumerations for models
 gem 'enumerize'
 
+# Role management for models
+gem 'rolify'
+
 # Social networks integration
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -57,5 +60,12 @@ group :development do
 
   # Use figaro for configuration management
   gem 'figaro'
+
+  # Use better error reporting
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
+  # Ignore requests to assets in log
+  gem 'quiet_assets'
 end
 

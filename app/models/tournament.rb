@@ -1,13 +1,11 @@
 class Tournament < ActiveRecord::Base
   extend Enumerize
 
-  belongs_to :user
-
   validates :name, presence: true
-  validates :user_id, presence: true
-
   validates :status, presence: true
   validates :strategy, presence: true
+
+  resourcify
 
   enumerize :status,
     in: [:new],

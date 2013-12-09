@@ -5,11 +5,7 @@ class User < ActiveRecord::Base
     :trackable, :validatable, :confirmable,
     :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :tournaments, dependent: :destroy
-
-  def has_tournaments?
-    tournaments.exists?
-  end
+  rolify
 
   def self.find_or_create_for_facebook(auth)
     # First try to fetch the user based on the auth information
@@ -29,5 +25,13 @@ class User < ActiveRecord::Base
     user.skip_confirmation!
     user.save!
     user
+  end
+
+  def organizes_tournaments?
+    Tournament.with_role(:organizer, self).any?
+  end
+
+  def organized_tournaments
+    Tournament.with_role :organizer, self
   end
 end

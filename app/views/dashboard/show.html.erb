@@ -13,7 +13,7 @@
           <% end %>
           <div class="clearfix"></div>
         </div>
-        <% unless current_user.has_tournaments? %>
+        <% unless current_user.organizes_tournaments? %>
           <div class="panel-body text-center">
           <p>No está organizando ningún torneo aún.</p>
         </div>
@@ -27,7 +27,7 @@
               </tr>
             </thead>
             <tbody>
-            <% current_user.tournaments.each do |tournament| %>
+            <% current_user.organized_tournaments.each do |tournament| %>
               <tr>
                 <td><%= tournament.name %></td>
                 <td><%= tournament.status_text %></td>

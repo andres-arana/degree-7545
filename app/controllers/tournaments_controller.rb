@@ -2,22 +2,27 @@ class TournamentsController < ApplicationController
   before_filter :authenticate_user!
 
   def new
-    @tournament = current_user.tournaments.build
+    @tournament = Tournament.new
   end
 
   def create
-    @tournament = current_user.tournaments.build tournament_params
+    @tournament = Tournament.new tournament_params
     if @tournament.save
-      redirect_to profile_path
+      current_user.add_role :organizer, @tournament
+      redirect_to profile_path, notice: "El torneo ha sido creado."
     else
       render :new
     end
   end
 
   def destroy
-    @tournament = current_user.tournaments.find(params[:id])
-    @tournament.destroy
-    redirect_to profile_path, alert: "El torneo ha sido eliminado"
+    @tournament = Tournament.find(params[:id])
+    if current_user.has_role? :organizer, @tournament
+      @tournament.destroy
+      redirect_to profile_path, notice: "El torneo ha sido eliminado."
+    else
+      redirect_to profile_path, alert: "No es el organizador del torneo que quiere eliminar."
+    end
   end
 
   private
