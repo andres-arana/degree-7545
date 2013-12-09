@@ -1,0 +1,42 @@
+<h2>
+  <i class="fa fa-trophy"></i> Mis torneos
+  <%= link_to new_tournament_path, class: "btn btn-danger btn-sm pull-right" do %>
+    <i class="fa fa-plus"></i> Nuevo torneo
+  <% end %>
+  <div class="clearfix"></div>
+</h2>
+
+<% unless current_user.organizes_tournaments? %>
+  <div class="well text-center">
+    <p>No está organizando ningún torneo aún.</p>
+  </div>
+<% else %>
+  <table class="table table-condensed table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% current_user.organized_tournaments.each do |tournament| %>
+      <tr>
+        <td>
+          <%= link_to tournament.name, edit_tournament_path(tournament) %>
+        </td>
+        <td><%= tournament.status_text %></td>
+        <td class="text-right">
+          <%= link_to edit_tournament_path(tournament), class: "btn btn-default btn-sm" do %>
+            <i class="fa fa-pencil"></i> Editar
+          <% end %>
+          <%= link_to tournament_path(tournament), method: :delete, class: "btn btn-default btn-sm" do %>
+            <i class="fa fa-trash-o"></i> Eliminar
+          <% end if tournament.can_be_deleted? %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+

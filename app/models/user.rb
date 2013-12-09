@@ -34,4 +34,16 @@ class User < ActiveRecord::Base
   def organized_tournaments
     Tournament.with_role :organizer, self
   end
+
+  def organized_tournaments_label
+    self.organized_tournaments.map(&:name).join(", ")
+  end
+
+  def joined_teams?
+    Team.with_role(:member, self).any?
+  end
+
+  def joined_teams
+    Team.with_role(:member, self)
+  end
 end

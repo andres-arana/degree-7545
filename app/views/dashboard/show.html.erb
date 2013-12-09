@@ -1,57 +1,16 @@
 <div class="container">
   <div class="page-header">
-    <h1><span class="glyphicon glyphicon-dashboard"></span> Panel de control</h1>
+    <h1><i class="fa fa-dashboard"></i> Panel de control</h1>
   </div>
 
   <div class="row">
     <div class="col-md-6">
-      <h2>
-        Mis torneos
-        <%= link_to new_tournament_path, class: "btn btn-danger btn-sm pull-right" do %>
-          <span class="glyphicon glyphicon-plus"></span> Nuevo torneo
-        <% end %>
-        <div class="clearfix"></div>
-      </h2>
-      <% unless current_user.organizes_tournaments? %>
-        <p>No está organizando ningún torneo aún.</p>
-      <% else %>
-        <table class="table table-condensed table-striped">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Estado</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-          <% current_user.organized_tournaments.each do |tournament| %>
-            <tr>
-              <td>
-                <%= link_to tournament.name, edit_tournament_path(tournament) %>
-              </td>
-              <td><%= tournament.status_text %></td>
-              <td class="text-right">
-                <%= link_to edit_tournament_path(tournament), class: "btn btn-default btn-sm" do %>
-                  <span class="glyphicon glyphicon-pencil"></span> Editar
-                <% end %>
-                <%= link_to tournament_path(tournament), method: :delete, class: "btn btn-default btn-sm" do %>
-                  <span class="glyphicon glyphicon-trash"></span> Eliminar
-                <% end if tournament.can_be_deleted? %>
-              </td>
-            </tr>
-          <% end %>
-          </tbody>
-        </table>
-      <% end %>
+      <%= render 'tournament_gadget' %>
+      <%= render 'teams_gadget' %>
     </div>
 
     <div class="col-md-6">
-      <h2>
-        Mis notificaciones
-      </h2>
-      <div class="well text-center">
-        No tiene ninguna notificación aún.
-      </div>
+      <%= render 'notifications_gadget' %>
     </div>
   </div>
 </div>

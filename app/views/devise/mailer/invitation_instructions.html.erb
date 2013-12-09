@@ -1,0 +1,18 @@
+<p>
+  ¡Hola <%= @resource.email %>!
+</p>
+
+<p>
+  Has sido registrado en <%= root_url %> como participante de un equipo en un
+  torneo. Haz click en el siguiente link para revisar la invitación, completar
+  tus datos y confirmar tu invitación.
+</p>
+
+<p>
+  <%= link_to 'Revisar invitación', accept_invitation_url(@resource, :invitation_token => @token) %>
+</p>
+
+<p>
+  Si no desea aceptar la invitación, ignore este email. No registraremos su
+  participación hasta que acceda al link de arriba y confirme su invitación.
+</p>

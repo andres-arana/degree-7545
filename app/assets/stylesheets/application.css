@@ -44,3 +44,7 @@ legend {
   padding-bottom: 0.2em;
   border-style: dotted;
 }
+
+fieldset {
+  margin-bottom: 2.5em;
+}

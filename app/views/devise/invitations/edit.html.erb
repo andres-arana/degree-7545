@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Confirme su participación</h1>
+  </div>
+
+  <h2>¡Hola <%= resource.email %>!</h2>
+
+  <p>
+    Usted ha sido invitado por <%= resource.invited_by.email %> a participar en uno de los torneos que organiza:
+  </p>
+
+  <p>
+    <%= resource.invited_by.organized_tournaments_label %>.
+  </p>
+
+  <div class="row">
+    <div class="col-md-7">
+      <%= simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+        <%= f.hidden_field :invitation_token %>
+
+        <%= f.input :password %>
+        <%= f.input :password_confirmation %>
+
+        <%= f.button :submit, "Confirmar participación", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+
+    <div class="col-md-5">
+      <div class="well well-lg">
+        <div class="text-center">
+          <h4>También puede confirmar su participación a través de:</h4>
+        </div>
+        <%= render "devise/shared/social" %>
+      </div>
+    </div>
+  </div>
+</div>

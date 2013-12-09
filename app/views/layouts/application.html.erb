@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/bootswatch/3.0.2/flatly/bootstrap.min.css" %>
+    <%= stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" %>
     <%= stylesheet_link_tag "application" %>
 
     <%= csrf_meta_tags %>
@@ -17,12 +18,12 @@
           <ul class="nav navbar-nav navbar-right pull-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-user"></span> <%= current_user.email %> <b class="caret"></b>
+                <%= current_user.email %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li>
                   <%= link_to destroy_user_session_path, method: :delete do %>
-                    <span class="glyphicon glyphicon-log-out"></span> Cerrar sesión
+                    <i class="fa fa-sign-out"></i> Cerrar sesión
                   <% end %>
                 </li>
               </ul>
@@ -30,7 +31,7 @@
           </ul>
         <% elsif controller_name != 'sessions' %>
           <%= link_to new_user_session_path, class: "btn btn-info navbar-btn pull-right" do %>
-            <span class="glyphicon glyphicon-user"></span> Iniciar sesión
+            <i class="fa fa-user"></i> Iniciar sesión
           <% end %>
         <% end %>
       </div>
@@ -50,7 +51,7 @@
             title: "Alerta",
             text: '<%= escape_javascript(flash[:alert]) %>',
             type: 'error',
-            icon: 'glyphicon glyphicon-envelope',
+            icon: 'fa fa-envelope',
             width: '60%',
             closer_hover: false
           });
@@ -65,7 +66,7 @@
             title: "Alerta",
             text: '<%= escape_javascript(flash[:notice]) %>',
             type: 'success',
-            icon: 'glyphicon glyphicon-envelope',
+            icon: 'fa fa-envelope',
             width: '60%',
             closer_hover: false
           });

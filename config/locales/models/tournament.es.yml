@@ -6,10 +6,11 @@ es:
       tournament:
         name: Nombre
         strategy: Modalidad
+        status: Estado
   enumerize:
     tournament:
       status:
-        new: Planificando
+        new: En inscripción
       strategy:
         free_for_all: Todos contra todos
 

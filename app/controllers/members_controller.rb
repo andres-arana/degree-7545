@@ -9,7 +9,7 @@ class MembersController < ApplicationController
   end
 
   def create
-    @member = User.invite! member_params
+    @member = User.invite! member_params, current_user
     @member.add_role :member, @team
     redirect_to edit_tournament_team_path(@tournament, @team), notice: "El miembro del equipo ha sido registrado exitosamente."
   end

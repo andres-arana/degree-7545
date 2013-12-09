@@ -1,0 +1,7 @@
+es:
+  devise:
+    invitations:
+      updated: 'Su participación ha sido confirmada. ¡Bienvenido!'
+    mailer:
+      invitation_instructions:
+        subject: '¡Bienvenido al torneo!'

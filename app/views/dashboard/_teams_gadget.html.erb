@@ -1,0 +1,31 @@
+<h2>
+  <i class="fa fa-users"></i> Mis equipos
+  <div class="clearfix"></div>
+</h2>
+
+<% unless current_user.joined_teams? %>
+  <div class="well text-center">
+    <p>No se ha unido a ningún equipo aún.</p>
+  </div>
+<% else %>
+  <table class="table table-condensed table-striped">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% current_user.joined_teams.each do |team| %>
+      <tr>
+        <td>
+          <%= team.name %>
+        </td>
+        <td class="text-right">
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+

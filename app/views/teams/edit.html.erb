@@ -1,28 +1,33 @@
 <div class="container">
   <div class="page-header">
     <h1>
-      Editar equipo
-      <small>en el torneo <%= @tournament.name %></small>
+      Equipo
+      <div class="pull-right">
+        <%= link_to "Volver", edit_tournament_path(@tournament), class: "btn btn-default" %>
+      </div>
+      <div class="clearfix"></div>
     </h1>
+    <div class="text-muted">del torneo <%= @tournament.name %></div>
   </div>
 
   <%= simple_form_for [@tournament, @team] do |f| %>
-    <fieldset style="margin-bottom: 1.5em;">
-      <legend>Datos generales</legend>
+    <fieldset>
+      <legend>
+        Datos generales
+        <div class="pull-right">
+          <%= f.button :submit, "Actualizar", class: "btn btn-primary" %>
+        </div>
+        <div class="clearfix"></div>
+      </legend>
       <%= f.input :name %>
 
-      <div class="pull-right">
-        <%= f.button :submit, "Actualizar equipo", class: "btn btn-primary" %>
-        <%= link_to "Cancelar", edit_tournament_path(@tournament), class: "btn btn-default" %>
-      </div>
-      <div class="clearfix"></div>
     </fieldset>
 
     <fieldset>
       <legend>
         Miembros
-        <%= link_to new_tournament_team_member_path(@tournament, @team), class: "btn btn-danger btn-sm pull-right" do %>
-          <span class="glyphicon glyphicon-plus"></span> Registrar miembro
+        <%= link_to new_tournament_team_member_path(@tournament, @team), class: "btn btn-danger pull-right" do %>
+          <i class="fa fa-plus"></i> Registrar miembro
         <% end %>
         <div class="clearfix"></div>
       </legend>
@@ -36,6 +41,7 @@
           <thead>
             <tr>
               <th>Email</th>
+              <th>¿Confirmado?</th>
               <th></th>
             </tr>
           </thead>
@@ -43,10 +49,19 @@
 
           <% @team.find_members.each do |member| %>
             <tr>
-              <td><%= member.email %></td>
+              <td>
+                <%= member.email %>
+              </td>
+              <td>
+                <% if member.invitation_accepted_at %>
+                  <i class="fa fa-check"></i>
+                <% else  %>
+                  <i class="fa fa-times"></i>
+                <% end %>
+              </td>
               <td class="text-right">
                 <%= link_to tournament_team_member_path(@tournament, @team, member), method: :delete, class: "btn btn-default btn-sm" do %>
-                  <span class="glyphicon glyphicon-trash"></span> Quitar
+                  <i class="fa fa-trash-o"></i> Quitar
                 <% end %>
               </td>
             </tr>
@@ -56,10 +71,6 @@
       <% end %>
     </fieldset>
 
-    <div class="pull-right">
-      <%= link_to "Volver al torneo", edit_tournament_path(@tournament), class: "btn btn-default" %>
-    </div>
-    <div class="clearfix"></div>
   <% end %>
 </div>
 
