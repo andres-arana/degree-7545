@@ -39,3 +39,8 @@ form {
 .img-rounded {
   border-radius: 5px;
 }
+
+legend {
+  padding-bottom: 0.2em;
+  border-style: dotted;
+}

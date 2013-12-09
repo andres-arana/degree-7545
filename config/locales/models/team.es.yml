@@ -1,0 +1,8 @@
+es:
+  activerecord:
+    models:
+      team: Equpio
+    attributes:
+      team:
+        name: Nombre
+

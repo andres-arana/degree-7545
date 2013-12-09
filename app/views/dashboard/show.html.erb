@@ -5,64 +5,52 @@
 
   <div class="row">
     <div class="col-md-6">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          Mis torneos
-          <%= link_to new_tournament_path, class: "btn btn-danger btn-xs pull-right" do %>
-            <span class="glyphicon glyphicon-plus"></span> Nuevo torneo
-          <% end %>
-          <div class="clearfix"></div>
-        </div>
-        <% unless current_user.organizes_tournaments? %>
-          <div class="panel-body text-center">
-          <p>No está organizando ningún torneo aún.</p>
-        </div>
-        <% else %>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Estado</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-            <% current_user.organized_tournaments.each do |tournament| %>
-              <tr>
-                <td><%= tournament.name %></td>
-                <td><%= tournament.status_text %></td>
-                <td>
-                  <div class="dropdown">
-                    <a class="btn btn-primary btn-xs pull-right" href="#" data-toggle="dropdown">
-                      <span class="glyphicon glyphicon-cog"></span> <span class="glyphicon glyphicon-chevron-down"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <%= link_to tournament_path(tournament), method: :delete do %>
-                          <span class="glyphicon glyphicon-trash"> Eliminar</span>
-                        <% end if tournament.can_be_deleted? %>
-                      </li>
-                    </ul>
-                  </div>
-                </td>
-              </tr>
-            <% end %>
-            </tbody>
-          </table>
+      <h2>
+        Mis torneos
+        <%= link_to new_tournament_path, class: "btn btn-danger btn-sm pull-right" do %>
+          <span class="glyphicon glyphicon-plus"></span> Nuevo torneo
         <% end %>
-      </div>
+        <div class="clearfix"></div>
+      </h2>
+      <% unless current_user.organizes_tournaments? %>
+        <p>No está organizando ningún torneo aún.</p>
+      <% else %>
+        <table class="table table-condensed table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Estado</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% current_user.organized_tournaments.each do |tournament| %>
+            <tr>
+              <td>
+                <%= link_to tournament.name, edit_tournament_path(tournament) %>
+              </td>
+              <td><%= tournament.status_text %></td>
+              <td class="text-right">
+                <%= link_to edit_tournament_path(tournament), class: "btn btn-default btn-sm" do %>
+                  <span class="glyphicon glyphicon-pencil"></span> Editar
+                <% end %>
+                <%= link_to tournament_path(tournament), method: :delete, class: "btn btn-default btn-sm" do %>
+                  <span class="glyphicon glyphicon-trash"></span> Eliminar
+                <% end if tournament.can_be_deleted? %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <% end %>
     </div>
 
     <div class="col-md-6">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          Mis notificaciones
-        </div>
-        <div class="panel-body text-center">
-          <p>
-          No tiene ninguna notificación aún.
-          </p>
-        </div>
+      <h2>
+        Mis notificaciones
+      </h2>
+      <div class="well text-center">
+        No tiene ninguna notificación aún.
       </div>
     </div>
   </div>

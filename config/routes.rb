@@ -1,5 +1,9 @@
 Koncu::Application.routes.draw do
-  resources :tournaments
+  resources :tournaments, except: [:index] do |tournaments|
+    resources :teams, except: [:index] do
+      resources :members, except: [:index]
+    end
+  end
 
   devise_paths = {
     sign_in: 'sign-in',

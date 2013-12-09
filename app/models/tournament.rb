@@ -5,6 +5,8 @@ class Tournament < ActiveRecord::Base
   validates :status, presence: true
   validates :strategy, presence: true
 
+  has_many :teams
+
   resourcify
 
   enumerize :status,
