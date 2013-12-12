@@ -22,7 +22,7 @@
                     <h3>Local</h3>
                     <%= event.first_team.name %>
                     <% unless event.unplanned? %>
-                      <% if event.first_team_confirmed? %>
+                      <% if event.first_team_confirmed_at %>
                         <i class="fa fa-check"></i>
                       <% end %>
                     <% end %>
@@ -30,7 +30,7 @@
                   <div class="col-xs-6 text-right">
                     <h3>Visitante</h3>
                     <% unless event.unplanned? %>
-                      <% if event.second_team_confirmed? %>
+                      <% if event.second_team_confirmed_at %>
                         <i class="fa fa-check"></i>
                       <% end %>
                     <% end %>

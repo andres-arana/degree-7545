@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212110313) do
+ActiveRecord::Schema.define(version: 20131212135739) do
 
   create_table "events", force: true do |t|
     t.datetime "date"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20131212110313) do
     t.boolean  "pending"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "first_team_confirmed"
-    t.boolean  "second_team_confirmed"
+    t.datetime "first_team_confirmed_at"
+    t.datetime "second_team_confirmed_at"
   end
 
   add_index "events", ["first_team_id"], name: "index_events_on_first_team_id"

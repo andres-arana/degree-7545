@@ -5,7 +5,7 @@ module Notifications
     end
 
     def description
-      team = if @event.first_team_confirmed_changed?
+      team = if @event.first_team_confirmed_at_changed?
                @event.first_team
              else
                @event.second_team
