@@ -26,6 +26,9 @@
           <%= team.tournament.name %>
         </td>
         <td class="text-right">
+          <%= link_to team_path(team), class: "btn btn-default btn-sm" do %>
+            <i class="fa fa-search"></i> Ver
+          <% end %>
         </td>
       </tr>
     <% end %>

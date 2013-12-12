@@ -11,6 +11,14 @@ Koncu::Application.routes.draw do
     end
   end
 
+  resources :teams, only: [:show], controller: "team_participations" do
+    resources :events, only: [], controller: "team_participations" do
+      member do
+        post 'confirm'
+      end
+    end
+  end
+
   devise_paths = {
     sign_in: 'sign-in',
     sign_out: 'sign-out',

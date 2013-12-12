@@ -16,4 +16,9 @@ class Team < ActiveRecord::Base
   def find_members
     User.with_role :member, self
   end
+
+  def all_events
+    Event.
+      where("first_team_id = ? or second_team_id = ?", self.id, self.id)
+  end
 end

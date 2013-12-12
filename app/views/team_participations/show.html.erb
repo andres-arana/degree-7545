@@ -1,16 +1,16 @@
 <div class="container">
   <div class="page-header">
     <h1>
-      Fixture
+      Participaciones
       <div class="pull-right">
         <%= link_to "Volver", root_path, class: "btn btn-default" %>
       </div>
       <div class="clearfix"></div>
     </h1>
-    <div class="text-muted">del torneo <%= @tournament.name %></div>
+    <div class="text-muted">del equipo <%= @team.name %> en el torneo <%= @team.tournament.name %></div>
   </div>
 
-  <% @tournament.events.in_groups_of 3 do |events| %>
+  <% @team.all_events.in_groups_of 3 do |events| %>
     <div class="row">
       <% events.each do |event| %>
         <% if event %>
@@ -59,9 +59,17 @@
               </dl>
 
               <div class="actions">
-                <%= link_to "Editar",
-                  edit_tournament_fixture_event_path(@tournament, event),
-                  class: "btn btn-primary" %>
+                <% if event.unplanned? %>
+
+                <% elsif event.pending? %>
+                  <% if event.team_confirmation_pending?(@team) %>
+                    <%= link_to "Confirmar asistencia", confirm_team_event_path(@team, event), class: "btn btn-default", method: :post %>
+                  <% end %>
+                <% elsif event.incomplete? %>
+
+                <% else %>
+
+                <% end %>
               </div>
             </div>
           </div>
@@ -70,44 +78,5 @@
     </div>
   <% end %>
 
-  <div style="margin-top: 2.5em; border-top: 2px #ccc dashed; padding-top: 1em;">
-    <h4>Leyenda:</h4>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="alert alert-danger">
-          <h5>Evento sin planificar</h5>
-          <p>
-          Sin fecha o lugar de encuentro.
-          </p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="alert alert-info">
-          <h5>Evento pendiente</h5>
-          <p>
-          Planificado para futuro.
-          </p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="alert alert-warning">
-          <h5>Evento sin completar</h5>
-          <p>
-          Sin resultados cargados.
-          </p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="alert alert-success">
-          <h5>Listo</h5>
-          <p>
-          Resultados cargados.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </div>
-
-
