@@ -21,19 +21,15 @@
                   <div class="col-xs-6 text-left">
                     <h3>Local</h3>
                     <%= event.first_team.name %>
-                    <% unless event.unplanned? %>
-                      <% if event.first_team_confirmed_at %>
-                        <i class="fa fa-check"></i>
-                      <% end %>
-                    <% end %>
+                    <i class="fa fa-check first-team"
+                      data-event-id="<%= event.id %>"
+                      style="<%= if event.first_team_confirmed_at then '' else 'display: none;' end %>"></i>
                   </div>
                   <div class="col-xs-6 text-right">
                     <h3>Visitante</h3>
-                    <% unless event.unplanned? %>
-                      <% if event.second_team_confirmed_at %>
-                        <i class="fa fa-check"></i>
-                      <% end %>
-                    <% end %>
+                    <i class="fa fa-check second-team"
+                      data-event-id="<%= event.id %>"
+                      style="<%= if event.second_team_confirmed_at then '' else 'display: none;' end %>"></i>
                     <%= event.second_team.name %>
                   </div>
                 </div>
@@ -110,4 +106,48 @@
 
 </div>
 
+<% content_for :scripts do %>
+  <script>
+
+var lastUpdated = new Date();
+
+var requestConfirmations = function(since) {
+  $.getJSON(
+      "/api/tournaments/<%= @tournament.id %>/confirmations.json",
+      { since: lastUpdated.toJSON() },
+      updateNotifications);
+};
+
+var updateNotifications = function(data) {
+  lastUpdated = new Date();
+
+  for (var i = 0; i < data.length; i++) {
+    var event = data[i];
+
+    if (event.first_team_confirmed_at) {
+      var element = $(".fa.fa-check.first-team[data-event-id=" + event.id + "]");
+      if (!element.is(":visible")) {
+        element.parents(".alert").fadeOut("fast");
+        element.fadeIn();
+        element.parents(".alert").fadeIn("slow");
+      }
+    }
+
+    if (event.second_team_confirmed_at) {
+      var element = $(".fa.fa-check.second-team[data-event-id=" + event.id + "]");
+      if (!element.is(":visible")) {
+        element.parents(".alert").fadeOut("fast");
+        element.fadeIn();
+        element.parents(".alert").fadeIn("slow");
+      }
+    }
+  }
+};
+
+$(document).ready(function() {
+    setInterval(requestConfirmations, 15000);
+    });
+
+  </script>
+<% end %>
 

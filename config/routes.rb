@@ -19,6 +19,12 @@ Koncu::Application.routes.draw do
     end
   end
 
+  namespace :api do
+    resources :tournaments, only: [] do
+      resources :confirmations, only: [:index]
+    end
+  end
+
   devise_paths = {
     sign_in: 'sign-in',
     sign_out: 'sign-out',
