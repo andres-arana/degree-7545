@@ -21,19 +21,6 @@ class MembersController < ApplicationController
   end
 
   protected
-  def load_tournament
-    @tournament = Tournament.find params[:tournament_id]
-  end
-
-  def check_tournament_ownership
-    unless current_user.has_role? :organizer, @tournament
-      redirect_to  root_path, alert: "No puede administrar miembros de un torneo que no organiza."
-      false
-    else
-      true
-    end
-  end
-
   def load_team
     @team = Team.find params[:team_id]
   end

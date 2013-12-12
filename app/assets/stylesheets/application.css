@@ -48,3 +48,20 @@ legend {
 fieldset {
   margin-bottom: 2.5em;
 }
+
+.fixture-event-widget-header {
+  padding-bottom: 0.7em;
+  border-bottom: 2px dashed #1e2a36;
+}
+
+dt {
+  margin-top: 0.7em;
+}
+
+.actions {
+  text-align: right;
+}
+
+.actions a {
+  text-decoration: none;
+}

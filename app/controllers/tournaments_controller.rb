@@ -1,7 +1,7 @@
 class TournamentsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :load_tournament, only: [:edit, :update, :destroy]
-  before_filter :check_tournament_ownership, only: [:edit, :update, :destroy]
+  before_filter :load_tournament, only: [:edit, :update, :destroy, :ready]
+  before_filter :check_tournament_ownership, only: [:edit, :update, :destroy, :ready]
 
   def new
     @tournament = Tournament.new
@@ -33,17 +33,14 @@ class TournamentsController < ApplicationController
     redirect_to profile_path, notice: "El torneo ha sido eliminado exitosamente."
   end
 
+  def ready
+    @tournament.start!
+    redirect_to tournament_fixture_path(@tournament), notice: "El torneo ha comenzado."
+  end
+
   private
   def load_tournament
     @tournament = Tournament.find(params[:id])
-  end
-
-  def check_tournament_ownership
-    unless current_user.has_role? :organizer, @tournament
-      redirect_to root_path, alert: "No es el organizador del torneo."
-    else
-      false
-    end
   end
 
   def tournament_params

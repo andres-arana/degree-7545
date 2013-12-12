@@ -11,6 +11,7 @@ es:
     tournament:
       status:
         new: En inscripción
+        playing: En curso
       strategy:
         free_for_all: Todos contra todos
 

@@ -1,7 +1,13 @@
 Koncu::Application.routes.draw do
   resources :tournaments, except: [:index] do |tournaments|
+    member do
+      post 'ready'
+    end
     resources :teams, except: [:index] do
       resources :members, except: [:index]
+    end
+    resource :fixture, only: [:show] do
+      resources :events, only: [:edit, :update]
     end
   end
 

@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209022758) do
+ActiveRecord::Schema.define(version: 20131212025010) do
+
+  create_table "events", force: true do |t|
+    t.datetime "date"
+    t.integer  "first_team_id"
+    t.integer  "second_team_id"
+    t.integer  "location_id"
+    t.integer  "tournament_id"
+    t.boolean  "pending"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "first_team_confirmed"
+    t.boolean  "second_team_confirmed"
+  end
+
+  add_index "events", ["first_team_id"], name: "index_events_on_first_team_id"
+  add_index "events", ["location_id"], name: "index_events_on_location_id"
+  add_index "events", ["second_team_id"], name: "index_events_on_second_team_id"
+  add_index "events", ["tournament_id"], name: "index_events_on_tournament_id"
+
+  create_table "locations", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "telephone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"

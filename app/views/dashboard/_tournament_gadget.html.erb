@@ -27,12 +27,9 @@
         </td>
         <td><%= tournament.status_text %></td>
         <td class="text-right">
-          <%= link_to edit_tournament_path(tournament), class: "btn btn-default btn-sm" do %>
+          <%= link_to manage_tournament_path(tournament), class: "btn btn-default btn-sm" do %>
             <i class="fa fa-pencil"></i> Editar
           <% end %>
-          <%= link_to tournament_path(tournament), method: :delete, class: "btn btn-default btn-sm" do %>
-            <i class="fa fa-trash-o"></i> Eliminar
-          <% end if tournament.can_be_deleted? %>
         </td>
       </tr>
     <% end %>

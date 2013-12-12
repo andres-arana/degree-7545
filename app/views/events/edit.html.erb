@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="page-header">
+    <h1>
+      Evento
+      <div class="pull-right">
+        <%= link_to "Volver",
+          tournament_fixture_path(@tournament),
+          class: "btn btn-default" %>
+      </div>
+      <div class="clearfix"></div>
+    </h1>
+    <div class="text-muted">del torneo <%= @tournament.name %></div>
+  </div>
+
+  <%= simple_form_for @event, url: tournament_fixture_event_path(@tournament, @event) do |f| %>
+    <fieldset>
+      <legend>Equipos</legend>
+      <div class="row">
+        <div class="col-xs-6 text-left">
+          <h3>Local</h3>
+          <%= @event.first_team.name %>
+        </div>
+        <div class="col-xs-6 text-right">
+          <h3>Visitante</h3>
+          <%= @event.second_team.name %>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Organización</legend>
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.association :location %>
+        </div>
+        <div class="col-md-6">
+          <%= f.input :date, as: :string %>
+        </div>
+      </div>
+    </fieldset>
+
+
+      <%= f.button :submit, "Actualizar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+

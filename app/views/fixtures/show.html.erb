@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="page-header">
+    <h1>
+      Fixture
+    </h1>
+    <div class="text-muted">del torneo <%= @tournament.name %></div>
+  </div>
+
+  <% @tournament.events.in_groups_of 3 do |events| %>
+    <div class="row">
+      <% events.each do |event| %>
+        <% if event %>
+          <div class="col-md-4">
+            <div class="<%= event_container_class(event) %>">
+              <div class="fixture-event-widget-header">
+                <div class="row">
+                  <div class="col-xs-6 text-left">
+                    <h3>Local</h3>
+                    <%= event.first_team.name %>
+                    <% unless event.unplanned? %>
+                      <% if event.first_team_confirmed? %>
+                        <i class="fa fa-check"></i>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    <h3>Visitante</h3>
+                    <% unless event.unplanned? %>
+                      <% if event.second_team_confirmed? %>
+                        <i class="fa fa-check"></i>
+                      <% end %>
+                    <% end %>
+                    <%= event.second_team.name %>
+                  </div>
+                </div>
+              </div>
+              <dl>
+                <dt>Fecha:</dt>
+                <dd>
+                <% if event.date %>
+                  <%= l event.date, format: :long %>
+                <% else %>
+                  Sin confirmar
+                <% end %>
+                </dd>
+
+                <dt>En:</dt>
+                <dd>
+                <% if event.location %>
+                  <%= event.location.name %> (<%= event.location.address %>)
+                <% else %>
+                  Sin confirmar
+                <% end %>
+                </dd>
+              </dl>
+
+              <div class="actions">
+                <%= link_to "Editar",
+                  edit_tournament_fixture_event_path(@tournament, event),
+                  class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div style="margin-top: 2.5em; border-top: 2px #ccc dashed; padding-top: 1em;">
+    <h4>Leyenda:</h4>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="alert alert-danger">
+          <h5>Evento sin planificar</h5>
+          <p>
+          Sin fecha o lugar de encuentro.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="alert alert-info">
+          <h5>Evento pendiente</h5>
+          <p>
+          Planificado para futuro.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="alert alert-warning">
+          <h5>Evento sin completar</h5>
+          <p>
+          Sin resultados cargados.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="alert alert-success">
+          <h5>Listo</h5>
+          <p>
+          Resultados cargados.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

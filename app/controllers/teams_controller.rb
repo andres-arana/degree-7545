@@ -36,19 +36,6 @@ class TeamsController < ApplicationController
   end
 
   protected
-  def load_tournament
-    @tournament = Tournament.find params[:tournament_id]
-  end
-
-  def check_tournament_ownership
-    unless current_user.has_role? :organizer, @tournament
-      redirect_to root_path, alert: "No puede administrar equipos en un torneo que no organiza."
-      false
-    else
-      true
-    end
-  end
-
   def team_params
     params.require(:team).permit(:name)
   end

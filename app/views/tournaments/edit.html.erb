@@ -26,10 +26,13 @@
         </div>
       </div>
 
-      <!-- 
-      <%= link_to "Cerrar inscripción", "#", class: "btn btn-danger" %>
--->
+      <% if @tournament.has_minimum_teams? and @tournament.status_new? %>
+        <%= link_to "Cerrar inscripción", ready_tournament_path(@tournament), class: "btn btn-success", method: :post %>
+      <% end %>
       <%= f.button :submit, "Actualizar", class: "btn btn-primary" %>
+      <%= link_to tournament_path(@tournament), method: :delete, class: "btn btn-danger" do %>
+        <i class="fa fa-trash-o"></i> Eliminar torneo
+      <% end if @tournament.can_be_deleted? %>
     </fieldset>
 
     <fieldset>

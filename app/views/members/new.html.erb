@@ -2,8 +2,8 @@
   <div class="page-header">
     <h1>
       Nuevo miembro
-      <small>en el equipo <%= @team.name %> del torneo <%= @tournament.name %></small>
     </h1>
+    <div class="text-muted">en el equipo <%= @team.name %> del torneo <%= @tournament.name %></div>
   </div>
 
   <%= simple_form_for [@tournament, @team, @member], url: tournament_team_members_path(@tournament, @team) do |f| %>
