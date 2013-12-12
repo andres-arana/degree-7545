@@ -31,7 +31,7 @@ Koncu::Application.routes.draw do
 
   devise_for :users, path_names: devise_paths, controllers: devise_controllers
 
-  get 'profile', to: "dashboard#show"
+  get 'dashboard', to: "dashboard#show"
 
   root to: 'home#show'
 end

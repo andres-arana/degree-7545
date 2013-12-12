@@ -23,7 +23,8 @@ Koncu::Application.configure do
   config.active_record.migration_error = :page_load
 
   # Send emails to link to localhost by default
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = {host: 'localhost:3000'}
+  config.action_controller.default_url_options = {:host => "localhost:3000"} 
 
   # Use letter opener to send emails
   config.action_mailer.delivery_method = :letter_opener

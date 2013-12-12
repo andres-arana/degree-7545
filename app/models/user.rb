@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :lockable, :timeoutable and :omniauthable
+
+  has_many :notifications, dependent: :destroy, autosave: true
+
   devise :invitable, :database_authenticatable, :registerable, :recoverable,
     :rememberable, :trackable, :validatable, :confirmable, :omniauthable,
     omniauth_providers: [:facebook]
@@ -45,5 +46,13 @@ class User < ActiveRecord::Base
 
   def joined_teams
     Team.with_role(:member, self)
+  end
+
+  def has_notifications?
+    !self.notifications.empty?
+  end
+
+  def latest_notifications
+    self.notifications.order('created_at DESC').limit(10)
   end
 end

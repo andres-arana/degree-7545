@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
-     stored_location_for(resource) || profile_path
+     stored_location_for(resource) || dashboard_path
   end
 
   def load_tournament
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def check_tournament_ownership
     unless current_user.has_role? :organizer, @tournament
-      redirect_to root_path, alert: "No puede administrar equipos en un torneo que no organiza."
+      redirect_to dashboard_path, alert: "No puede administrar equipos en un torneo que no organiza."
       false
     else
       true

@@ -80,6 +80,7 @@ Koncu::Application.configure do
 
   # Send emails to link to heroku by default
   config.action_mailer.default_url_options = { host: 'koncu.herokuapp.com' }
+  config.action_controller.default_url_options = {:host => "koncu.herokuapp.com"} 
 
   # Action Mailer configuration for sendgrid
   config.action_mailer.delivery_method = :smtp

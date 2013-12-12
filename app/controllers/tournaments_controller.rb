@@ -22,7 +22,7 @@ class TournamentsController < ApplicationController
 
   def update
     if @tournament.update_attributes tournament_params
-      redirect_to root_path, notice: "El torneo ha sido actualizado exitosamente."
+      redirect_to dashboard_path, notice: "El torneo ha sido actualizado exitosamente."
     else
       render :edit
     end
@@ -30,7 +30,7 @@ class TournamentsController < ApplicationController
 
   def destroy
     @tournament.destroy
-    redirect_to profile_path, notice: "El torneo ha sido eliminado exitosamente."
+    redirect_to dashboard_path, notice: "El torneo ha sido eliminado exitosamente."
   end
 
   def ready

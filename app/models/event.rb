@@ -1,4 +1,6 @@
 class Event < ActiveRecord::Base
+  include EventNotifications
+
   belongs_to :first_team, class_name: 'Team'
   belongs_to :second_team, class_name: 'Team'
   belongs_to :location
@@ -25,12 +27,21 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def team_confirmed?
+    (self.first_team_confirmed_changed? and self.first_team_confirmed?) or
+      (self.second_team_confirmed_changed? and self.second_team_confirmed?)
+  end
+
   def confirm_team!(team)
     if self.first_team.id == team.id
       self.update_attributes first_team_confirmed: true
     elsif self.second_team.id == team.id
       self.update_attributes second_team_confirmed: true
     end
+  end
+
+  def all_teams
+    [self.first_team, self.second_team]
   end
 
   protected

@@ -1,6 +1,8 @@
 class Tournament < ActiveRecord::Base
   extend Enumerize
 
+  include TournamentNotifications
+
   validates :name, presence: true
   validates :status, presence: true
   validates :strategy, presence: true

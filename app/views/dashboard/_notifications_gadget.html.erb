@@ -1,6 +1,28 @@
 <h2>
   <i class="fa fa-envelope"></i> Notificaciones
 </h2>
-<div class="well text-center">
-  No tiene ninguna notificación aún.
-</div>
+
+<% unless current_user.has_notifications? %>
+  <div class="well text-center">
+    No tiene ninguna notificación aún.
+  </div>
+<% else %>
+  <table class="table table-condensed table-striped">
+    <tbody>
+    <% current_user.latest_notifications.each do |notification| %>
+      <tr>
+        <td>
+          <%= notification.description %>
+        </td>
+        <td class="text-right">
+          <%= link_to notification.link, class: "btn btn-default btn-sm" do %>
+            <i class="fa fa-search"></i> Ver
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+
+<% end %>

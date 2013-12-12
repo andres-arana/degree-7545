@@ -19,7 +19,7 @@ class TeamParticipationsController < ApplicationController
   protected
   def check_team_membership
     unless current_user.has_role? :member, @team
-      redirect_to root_path, alert: "No puede administrar este equipo dado que no es miembro de él."
+      redirect_to dashboard_path, alert: "No puede administrar este equipo dado que no es miembro de él."
       false
     else
       true
